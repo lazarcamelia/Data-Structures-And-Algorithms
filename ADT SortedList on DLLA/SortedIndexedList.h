@@ -53,6 +53,9 @@ public:
 	//destructor
 	~SortedIndexedList();
 
+	//removes all elements from the SortedList
+	void empty();
+
 private:
 	void resize();
 };

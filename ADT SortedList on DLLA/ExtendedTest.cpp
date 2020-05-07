@@ -355,11 +355,42 @@ void testQuantity() {
 	assert(list.isEmpty());
 }
 
+void testEmpty() {
+	cout << "Test empty" << endl;
+
+	SortedIndexedList list = SortedIndexedList(asc);
+
+	int vMin = 0;
+	int vMax = 100;
+	populate(list, vMin, vMax);
+
+	list.empty();
+	assert(list.isEmpty() == true);
+	populate(list, vMin, vMax);
+
+	int d = 30;
+	for (int i = 1; i <= d; i++) {
+		try {
+			list.remove(list.search(vMax + i));
+			assert(false);
+		}
+		catch (exception&) {
+			assert(true);
+		}
+	}
+	
+	list.empty();
+	assert(list.isEmpty() == true); 
+	list.empty();
+	assert(list.isEmpty() == true); 
+}
+
 void testAllExtended() {
 	testCreate();
 	testAddAndSearch();
 	testDeleteSearch();
 	testQuantity();
+	testEmpty();
 }
 
 

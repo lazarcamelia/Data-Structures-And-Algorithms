@@ -203,6 +203,27 @@ SortedIndexedList::~SortedIndexedList() {
 	delete[] this->prev;
 }
 
+//BC=WC=AC: Theta(n), where n = the number of all the elements in the list
+void SortedIndexedList::empty() {
+	int node = this->head;
+
+	if (this->sizeOfList == 0)
+		return;
+
+	while (node != -1) {
+		this->elems[node] = 0;
+		node = this->next[node];
+	}
+	
+	this->next[this->tail] = this->firstEmpty;
+	this->prev[this->firstEmpty] = this->tail;
+	this->firstEmpty = this->head;
+
+	this->head = -1;
+	this->tail = -1;
+	this->sizeOfList = 0;
+}
+
 //BC=WC=AC = Theta(n), where n = the size of the list
 void SortedIndexedList::resize() {
 	this->capacity *= 2;
